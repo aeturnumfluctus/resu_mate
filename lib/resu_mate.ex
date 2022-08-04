@@ -21,9 +21,8 @@ defmodule ResuMate do
       ResuMate.parse("/path/to/resume.yml")
       {:ok, resume_data}
   """
-  @spec parse(Path.t()) :: {:ok, Map.t()} | {:error, ParserError.t()}
+  @spec parse(Path.t()) :: {:ok, resume_data} | {:error, ParserError.t()}
   def parse(resume_filepath), do: Parser.parse(resume_filepath)
-
 
   @doc """
   Returns the data (`Map.t()`) yielded by parsing `resume_filepath`
