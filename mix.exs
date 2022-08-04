@@ -23,10 +23,10 @@ defmodule ResuMate.MixProject do
   end
 
   defp package do
-    [    
+    [
       licenses: ["Apache-2.0"],
       maintainers: ["Josh Adams"],
-      links: %{"GitHub" => @source_url},
+      links: %{"GitHub" => @source_url}
     ]
   end
 
