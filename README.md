@@ -1,6 +1,7 @@
 # ResuMate
 
-**TODO: Add description**
+A little tool to generate a resume from structured data.
+
 
 ## Installation
 
