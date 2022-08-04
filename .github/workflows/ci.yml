@@ -35,3 +35,25 @@ jobs:
         run: mix deps.get
       - name: Compilation
         run: mix compile #--warnings-as-errors
+
+  format:
+    name: Check formatting
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Elixir
+      uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
+      with:
+        elixir-version: '1.13.1' # Define the elixir version [required]
+        otp-version: '23.2' # Define the OTP version [required]
+    - name: Restore dependencies cache
+      uses: actions/cache@v2
+      with:
+        path: deps
+        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+        restore-keys: ${{ runner.os }}-mix-
+    - name: Install dependencies
+      run: mix deps.get
+    - name: Check Format
+      run: mix format --check-formatted
