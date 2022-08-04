@@ -1,4 +1,18 @@
+defmodule ResuMate.ParserError do
+  @type t :: %__MODULE__{file: String.t()}
+
+  defexception [:file]
+
+  def message(%{file: file}) do
+    "OOPS! Couldn't parse" <> inspect(file)
+  end
+end
+
 defmodule ResuMate.Parser do
+  @moduledoc false
+
+  alias ResuMate.ParserError
+
   @doc """
   Returns the data (`Map.t()`) yielded by parsing a resume file 
 
@@ -7,8 +21,7 @@ defmodule ResuMate.Parser do
       ResuMate.parse("/path/to/resume.yml")
       {:ok, resume_data}
   """
-  # TODO: {:error, ParseError.t()}
-  @spec parse(Path.t()) :: {:ok, Map.t()} :: {:error, term}
+  @spec parse(Path.t()) :: {:ok, Map.t()} | {:error, ParserError.t()}
   def parse(filepath) do
     {:ok, "Got " <> filepath <> " :)"}
   end

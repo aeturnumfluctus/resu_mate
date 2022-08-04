@@ -8,7 +8,7 @@ defmodule ResuMate do
   **TODO**
   """
 
-  alias ResuMate.Parser
+  alias ResuMate.{Parser, ParserError}
 
   @doc """
   Returns the data (`Map.t()`) yielded by parsing a resume file 
@@ -18,7 +18,6 @@ defmodule ResuMate do
       ResuMate.parse("/path/to/resume.yml")
       {:ok, resume_data}
   """
-  # TODO: {:error, ParseError.t()}
-  @spec parse(Path.t()) :: {:ok, Map.t()} :: {:error, term}
+  @spec parse(Path.t()) :: {:ok, Map.t()} :: {:error, ParserError.t()}
   def parse(path_to_file), do: Parser.parse(path_to_file)
 end
