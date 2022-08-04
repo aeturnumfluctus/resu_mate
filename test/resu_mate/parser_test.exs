@@ -4,7 +4,7 @@ defmodule ResuMate.ParserTest do
 
   alias ResuMate.Parser
 
-  describe "call/1" do
+  describe "parse/1" do
     test "success: it works" do
       resume_file = Path.expand("test_resumes/success/simple.yml")
       assert {:ok, parsed_data} = Parser.parse(resume_file)
