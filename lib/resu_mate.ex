@@ -10,14 +10,35 @@ defmodule ResuMate do
 
   alias ResuMate.{Parser, ParserError}
 
+  @type resume_data :: Map.t()
+
   @doc """
-  Returns the data (`Map.t()`) yielded by parsing a resume file 
+  Returns a success tuple containing the data (`Map.t()`) yielded by parsing a 
+  `resume_filepath` 
 
   ## Examples
 
       ResuMate.parse("/path/to/resume.yml")
       {:ok, resume_data}
   """
-  @spec parse(Path.t()) :: {:ok, Map.t()} :: {:error, ParserError.t()}
-  def parse(path_to_file), do: Parser.parse(path_to_file)
+  @spec parse(Path.t()) :: {:ok, Map.t()} | {:error, ParserError.t()}
+  def parse(resume_filepath), do: Parser.parse(resume_filepath)
+
+
+  @doc """
+  Returns the data (`Map.t()`) yielded by parsing `resume_filepath`
+
+  If parsing fails, a `ParserError` is raised.
+
+  ## Examples
+
+      ResuMate.parse("/path/to/resume.yml")
+  """
+  @spec parse!(Path.t()) :: resume_data | no_return()
+  def parse!(filepath) do
+    case parse(filepath) do
+      {:ok, data} -> data
+      {_, error} -> raise error
+    end
+  end
 end
