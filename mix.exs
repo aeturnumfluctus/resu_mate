@@ -38,7 +38,7 @@ defmodule ResuMate.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:faker, "~> 0.17", only: :test},
+      {:faker, "~> 0.17", only: :test}
     ]
   end
 end
