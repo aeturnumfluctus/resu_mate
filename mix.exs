@@ -38,7 +38,9 @@ defmodule ResuMate.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:faker, "~> 0.17", only: :test}
+      {:faker, "~> 0.17", only: :test},
+      {:mox, "~> 1.0", only: :test},
+      {:yaml_elixir, "~> 2.9"}
     ]
   end
 end
