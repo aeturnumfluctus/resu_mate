@@ -1,10 +1,12 @@
 defmodule ResuMate.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+
   def project do
     [
       app: :resu_mate,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps()
