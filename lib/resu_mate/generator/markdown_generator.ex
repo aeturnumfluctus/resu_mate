@@ -56,6 +56,7 @@ defmodule ResuMate.Generator.MarkdownGenerator do
       build_section(:online_presence, nil, resume_data),
       build_section(:profile, "## Profile", resume_data),
       build_section(:education, "## Education", resume_data),
+      build_section(:strengths, "## Strengths", resume_data),
     ]
   end
 
@@ -139,6 +140,15 @@ defmodule ResuMate.Generator.MarkdownGenerator do
 
   def section_content(:profile, %{"profile" => %{"blurb" => blurb}}) do 
     {:ok, blurb}
+  end
+
+  # TODO: this could be better.. ^_^
+  def section_content(:strengths, %{"strengths" => strengths_data}) do
+    content = """
+    - #{Enum.join(strengths_data, "\n- ")}
+    """
+
+    {:ok, content}
   end
 
   # default to dummy string for unhandled section args ^_^

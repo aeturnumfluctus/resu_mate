@@ -47,6 +47,10 @@ defmodule ResuMate.Generator.MarkdownGeneratorTest do
             "start" => 2008,
             "end" => 2012,
           }
+        ],
+        "strengths" => [
+          "Evading complex problems through wit & bravery",
+          "Aptitude of hiking",
         ]
       }
 
