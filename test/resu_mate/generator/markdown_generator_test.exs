@@ -31,7 +31,23 @@ defmodule ResuMate.Generator.MarkdownGeneratorTest do
         },
         "profile" => %{
           "blurb" => Factory.paragraph()
-        }
+        },
+        "education" => [
+          %{
+            "degree" => "BS",
+            "focus" => %{
+              "major" => "Metallurgy",
+              "minor" => "Philosophy"
+            },
+            "location" => %{
+              "city" => "Mordor",
+              "state" => "Middle Earth"
+            },
+            "school" => "Mount Doom Institute of Technology",
+            "start" => 2008,
+            "end" => 2012,
+          }
+        ]
       }
 
       assert {:ok, resume_file} = MarkdownGenerator.generate(resume_data)

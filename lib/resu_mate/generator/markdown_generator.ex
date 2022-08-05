@@ -54,7 +54,8 @@ defmodule ResuMate.Generator.MarkdownGenerator do
       build_section(:name, nil, resume_data),
       build_section(:contact_info, "## Contact Info", resume_data),
       build_section(:online_presence, nil, resume_data),
-      build_section(:profile, "## Profile", resume_data)
+      build_section(:profile, "## Profile", resume_data),
+      build_section(:education, "## Education", resume_data),
     ]
   end
 
@@ -82,6 +83,44 @@ defmodule ResuMate.Generator.MarkdownGenerator do
     """
 
     {:ok, content}
+  end
+
+  def section_content(:education, %{"education" => education_data}) do
+    # too naive..
+    sort_by_fn = fn %{"start" => start_year, "end" => end_year} -> 
+      {
+        Date.new(end_year, 1, 1), 
+        Date.new(start_year, 1, 1)
+      } 
+    end
+
+    content = 
+      education_data
+      |> Enum.sort_by(&sort_by_fn.(&1), :desc)
+      |> Enum.map(fn education_entry -> 
+        section_content(:education_entry, education_entry) 
+      end)
+      |> Enum.join("\n")
+
+    {:ok, content}
+  end
+
+  def section_content(:education_entry, education_entry) do
+    %{
+      "degree" => degree, 
+      "focus" => %{"major" => major, "minor" => minor}, 
+      "location" => %{"city" => city, "state" => state},
+      "school" => school,
+      "start" => start_year,
+      "end" => end_year
+    } = education_entry
+
+    """
+    #{school}
+    *#{city}, #{state}* | *#{start_year} - #{end_year}*
+    #{degree} in #{major}
+    Minor in #{minor}
+    """
   end
 
   def section_content(:online_presence, %{"online_presence" => online_presence_data}) do
