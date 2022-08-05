@@ -18,12 +18,10 @@ defmodule ResuMate.Generator.MarkdownGenerator do
       %__MODULE__{name: name, heading: heading, contents: contents}
     end
 
+    def to_text(%__MODULE__{heading: nil, contents: contents}), do: contents
+
     def to_text(%__MODULE__{heading: heading, contents: contents}) do
-      if heading do
-        "#{heading}\n#{contents}"
-      else
-        contents
-      end
+      "#{heading}\n#{contents}"
     end
   end
 
