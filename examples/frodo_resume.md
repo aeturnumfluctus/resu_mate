@@ -1,11 +1,17 @@
 # Frodo Baggins
 ## Contact Info
+
 123-456-7890
+
 The Shire, Middle Earth
+
 [bagginsboi@ringbearer.net]("mailto:bagginsboi@ringbearer.net")
+
 [https://ringbearer.net](https://localhost:4000)
 
+
 [Github](https://github.com/frododododododododo)
+
 [LinkedIn](https://www.linkedin.com/in/frododododododododo)
 
 ## Profile
