@@ -23,7 +23,7 @@ defmodule ResuMate.GeneratorTest do
 
     Application.put_env(:resu_mate, :generator, ResuMate.MockGenerator)
 
-    on_exit(fn -> 
+    on_exit(fn ->
       Application.put_env(:resu_mate, :generator, configured_generator)
 
       File.rm(destination_filename)
@@ -43,7 +43,7 @@ defmodule ResuMate.GeneratorTest do
         %{
           "name" => %{
             "first" => first_name,
-            "last" => last_name 
+            "last" => last_name
           }
         } = parsed_data
 

@@ -1,6 +1,6 @@
 defmodule ResuMate.Generator.MarkdownGenerator do
   @moduledoc false
-  
+
   @behaviour ResuMate.GeneratorBehaviour
 
   alias ResuMate.GeneratorError
@@ -9,10 +9,10 @@ defmodule ResuMate.Generator.MarkdownGenerator do
     defstruct [:name, :heading, :contents]
 
     @type t :: %__MODULE__{
-      name: atom(),
-      heading: String.t() | nil,
-      contents: String.t()
-    }
+            name: atom(),
+            heading: String.t() | nil,
+            contents: String.t()
+          }
 
     def new(name, heading, contents) do
       %__MODULE__{name: name, heading: heading, contents: contents}
@@ -38,7 +38,7 @@ defmodule ResuMate.Generator.MarkdownGenerator do
   def content_for(resume_data) do
     sections = [
       build_section(:name, nil, resume_data),
-      build_section(:contact_info, "### Contact Info", resume_data),
+      build_section(:contact_info, "### Contact Info", resume_data)
     ]
 
     sections_with_errors = Enum.filter(sections, fn {k, _v} -> k == :error end)
@@ -52,7 +52,6 @@ defmodule ResuMate.Generator.MarkdownGenerator do
       |> Enum.map(fn {:ok, markdown_section} -> markdown_section end)
       |> Enum.map(&MarkdownSection.to_text/1)
       |> Enum.join("\n")
-
     end
   end
 
@@ -66,33 +65,33 @@ defmodule ResuMate.Generator.MarkdownGenerator do
 
   def section_content(:contact_info, %{"contact_info" => contact_info_data}) do
     %{
-      "email" => email, 
+      "email" => email,
       "location" => %{"city" => city, "state" => state},
-      "phone" => phone, 
+      "phone" => phone,
       "site" => %{"text" => site_text, "url" => site_url}
     } = contact_info_data
 
-    content = 
-      """
-      #{phone}
-      #{city}, #{state}
-      [#{email}]("mailto:#{email}")
-      [#{site_text}](#{site_url})
-      """
+    content = """
+    #{phone}
+    #{city}, #{state}
+    [#{email}]("mailto:#{email}")
+    [#{site_text}](#{site_url})
+    """
 
     {:ok, content}
   end
 
   # default to dummy string for unhandled section args ^_^
-  def section_content(section, data) do 
+  def section_content(section, data) do
     {:error, section_error_for(section, data)}
   end
 
   defp build_section(section_name, section_heading, resume_data) do
     case section_content(section_name, resume_data) do
-      {:ok, contents} -> 
+      {:ok, contents} ->
         {:ok, MarkdownSection.new(section_name, section_heading, contents)}
-      err_tup -> 
+
+      err_tup ->
         err_tup
     end
   end
@@ -106,9 +105,10 @@ defmodule ResuMate.Generator.MarkdownGenerator do
   end
 
   defp aggregate_errors(list_of_errors) do
-    error_message = list_of_errors
-                    |> Enum.map(& &1.message)
-                    |> Enum.join("\n")
+    error_message =
+      list_of_errors
+      |> Enum.map(& &1.message)
+      |> Enum.join("\n")
 
     %GeneratorError{message: error_message}
   end

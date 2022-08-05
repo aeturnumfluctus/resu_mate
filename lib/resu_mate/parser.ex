@@ -1,6 +1,6 @@
 defmodule ResuMate.Parser do
   @moduledoc false
-  
+
   alias ResuMate.{Parser, ParserError}
 
   alias Parser.YamlParser

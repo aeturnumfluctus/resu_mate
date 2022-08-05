@@ -1,10 +1,9 @@
 defmodule ResuMate.Parser.YamlParser do
   @moduledoc false
-  
+
   @behaviour ResuMate.ParserBehaviour
 
   alias ResuMate.ParserError
-
 
   @impl true
   def parse(filepath) do

@@ -83,7 +83,7 @@ defmodule ResuMateTest do
 
       Application.put_env(:resu_mate, :generator, ResuMate.MockGenerator)
 
-      on_exit(fn -> 
+      on_exit(fn ->
         Application.put_env(:resu_mate, :generator, configured_generator)
 
         File.rm(destination_filename)
@@ -110,7 +110,7 @@ defmodule ResuMateTest do
         %{
           "name" => %{
             "first" => first_name,
-            "last" => last_name 
+            "last" => last_name
           }
         } = parsed_data
 
@@ -119,10 +119,11 @@ defmodule ResuMateTest do
         {:ok, resume_content}
       end)
 
-      assert {:ok, _generate_resumed_data} = 
-        ResuMate.generate_resume(
-          from: source_resume_file, 
-          as: destination_filename)
+      assert {:ok, _generate_resumed_data} =
+               ResuMate.generate_resume(
+                 from: source_resume_file,
+                 as: destination_filename
+               )
     end
 
     test "error: returns an error tuple if the parser fails", %{
@@ -137,10 +138,12 @@ defmodule ResuMateTest do
         {:error, %ParserError{}}
       end)
 
-      assert {:error, generate_resume_error} = 
-        ResuMate.generate_resume(
-          from: source_resume_file, 
-          as: destination_filename)
+      assert {:error, generate_resume_error} =
+               ResuMate.generate_resume(
+                 from: source_resume_file,
+                 as: destination_filename
+               )
+
       assert %ParserError{} = generate_resume_error
     end
 
@@ -162,10 +165,11 @@ defmodule ResuMateTest do
         {:error, %ResuMate.GeneratorError{message: "uh oh"}}
       end)
 
-      assert {:error, generate_resume_error} = 
-        ResuMate.generate_resume(
-          from: source_resume_file, 
-          as: destination_filename)
+      assert {:error, generate_resume_error} =
+               ResuMate.generate_resume(
+                 from: source_resume_file,
+                 as: destination_filename
+               )
 
       assert %GeneratorError{} = generate_resume_error
     end

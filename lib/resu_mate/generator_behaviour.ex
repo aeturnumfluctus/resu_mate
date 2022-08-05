@@ -14,8 +14,9 @@ defmodule ResuMate.GeneratorBehaviour do
 
   alias ResuMate.GeneratorError
 
-  @type file_extension :: :md # or, e.g.) .docx, .txt, etc
-  
+  # or, e.g.) .docx, .txt, etc
+  @type file_extension :: :md
+
   @doc """
   Returns a string (`String.t()`) corresponding to the filepath of the generated 
   file.

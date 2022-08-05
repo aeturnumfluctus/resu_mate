@@ -15,13 +15,12 @@ defmodule ResuMate.Parser.YamlParserTest do
     filename = Path.join(tmp_dir, "resume.yml")
 
     File.open(filename, [:write], fn file ->
-      yaml = 
-        """
-        name: 
-          first: #{first_name}
-          last: #{last_name}
-        """
-      
+      yaml = """
+      name: 
+        first: #{first_name}
+        last: #{last_name}
+      """
+
       IO.write(file, yaml)
     end)
 
@@ -37,12 +36,13 @@ defmodule ResuMate.Parser.YamlParserTest do
       last_name: last_name
     } do
       assert {:ok, data} = YamlParser.parse(resume_file)
+
       assert %{
-        "name" => %{
-          "first" => ^first_name, 
-          "last" => ^last_name
-        }
-      } = data
+               "name" => %{
+                 "first" => ^first_name,
+                 "last" => ^last_name
+               }
+             } = data
     end
 
     test "error: returns an error tuple if parsing of file isn't successful" do

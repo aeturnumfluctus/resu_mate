@@ -47,11 +47,11 @@ defmodule ResuMate.Generator.MarkdownGeneratorTest do
     end)
   end
 
-  defp assert_markdown_contains(file, str) when is_binary(str) do 
+  defp assert_markdown_contains(file, str) when is_binary(str) do
     assert_markdown_contains(file, [str])
   end
 
-  defp assert_markdown_contains(file, %{__struct__: Regex} = regex) do 
+  defp assert_markdown_contains(file, %{__struct__: Regex} = regex) do
     assert_markdown_contains(file, [regex])
   end
 end
