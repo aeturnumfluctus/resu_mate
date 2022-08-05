@@ -11,3 +11,71 @@ contact_info:
   site: 
     text: https://ringbearer.net
     url: https://localhost:4000 #TODO
+
+online_presence:
+  linkedin: https://www.linkedin.com/in/frododododododododo
+  github: https://github.com/frododododododododo
+
+profile:
+  blurb: >
+    Dolorem est suscipit error incidunt quisquam provident sint reiciendis harum! Veritatis velit voluptatum et quo corporis nostrum velit eum rerum! Rerum iure ea repellat quibusdam qui eos? Debitis et soluta accusantium illum reprehenderit odio magni sint totam.
+
+education:
+  - degree: BS
+    school: Mount Doom Institute of Technology
+    location:
+      city: Mordor
+      state: Middle Earth
+    focus:
+      major: Metallurgy
+      minor: Philosophy
+    start: 2008
+    end: 2012
+
+skills:
+  proficiencies:
+    - Elixir
+  familiarities:
+    - Quantum Mechanics
+    - Cursed Jewelry
+  operating_systems:
+    - Linux
+    - Mac OS X
+
+strengths:
+  - Winning at Hide & Seek
+  - Bearing Weight
+
+work_experience:
+  - title: Ring Bearer
+    company:
+      name: The Fellowship LLC
+      location:
+        city: Rivendell
+        state: Middle Earth
+    start: 
+      year: 2021
+      month: 1
+    end: 
+      year: 2022
+      month: 12
+    duties_and_accomplishments:
+      - Molestias maiores error incidunt accusantium magnam suscipit nihil ut.
+      - Aperiam sit non quo cupiditate.
+      - Officia laborum ipsa itaque sit molestiae!
+  - title: Bus Boy
+    company:
+      name: Bilbo's Bag End Brewery 
+      location:
+        city: The Shire
+        state: Middle Earth
+    start: 
+      year: 2020
+      month: 12
+    end: 
+      year: 2020
+      month: 1
+    duties_and_accomplishments:
+      - Molestias maiores error incidunt accusantium magnam suscipit nihil ut.
+      - Aperiam sit non quo cupiditate.
+      - Officia laborum ipsa itaque sit molestiae!
