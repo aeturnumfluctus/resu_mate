@@ -1,3 +1,13 @@
 name:
-  first: Josh
-  last: Adams
+  first: Frodo
+  last: Baggins
+
+contact_info:
+  phone: 123-456-7890
+  email: bagginsboi@ringbearer.net
+  location:
+    city: The Shire
+    state: Middle Earth
+  site: 
+    text: https://ringbearer.net
+    url: https://localhost:4000 #TODO
