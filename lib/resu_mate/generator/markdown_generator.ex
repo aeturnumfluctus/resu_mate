@@ -43,7 +43,7 @@ defmodule ResuMate.Generator.MarkdownGenerator do
 
     if Enum.any?(sections_with_errors) do
       sections_with_errors
-      |> Enum.map(fn {_, v} -> v end)
+      |> Enum.map(fn {_, error} -> error end)
       |> aggregate_errors()
     else
       sections
