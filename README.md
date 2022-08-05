@@ -2,7 +2,6 @@
 
 A little tool to generate a resume from structured data.
 
-
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
@@ -19,6 +18,20 @@ end
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/resu_mate>.
+
+## Usage
+
+To generate a markdown-formatted resume named `resume.md` from existing data in 
+`resume.yml`, open up an `iex` shell and run:
+
+```elixir
+iex> ResuMate.generate_resume(as: "resume.md", from: "resume.yml")
+```
+
+Currently, resume source files must adhere to a fairly specific structure in
+order for the generator to function properly. An example of this structure can 
+be found in an [examples file](examples/frodo_resume_data.yml) included in this
+repository.
 
 ## License
 
