@@ -24,6 +24,10 @@ defmodule ResuMate.Generator.MarkdownGeneratorTest do
             "text" => "https://ringbearer.net",
             "url" => "https://localhost:4000"
           }
+        },
+        "online_presence" => %{
+          "linkedin" => "https://www.linkedin.com/in/frododododododododo",
+          "github" => "https://github.com/frododododododododo"
         }
       }
 

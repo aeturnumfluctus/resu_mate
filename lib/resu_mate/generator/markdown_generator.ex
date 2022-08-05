@@ -52,7 +52,8 @@ defmodule ResuMate.Generator.MarkdownGenerator do
   defp build_sections(resume_data) do
     [
       build_section(:name, nil, resume_data),
-      build_section(:contact_info, "### Contact Info", resume_data)
+      build_section(:contact_info, "### Contact Info", resume_data),
+      build_section(:online_presence, nil, resume_data)
     ]
   end
 
@@ -77,6 +78,20 @@ defmodule ResuMate.Generator.MarkdownGenerator do
     #{city}, #{state}
     [#{email}]("mailto:#{email}")
     [#{site_text}](#{site_url})
+    """
+
+    {:ok, content}
+  end
+
+  def section_content(:online_presence, %{"online_presence" => online_presence_data}) do
+    %{
+      "github" => github_url,
+      "linkedin" => linkedin_url
+    } = online_presence_data
+
+    content = """
+    [Github](#{github_url})
+    [LinkedIn](#{linkedin_url})
     """
 
     {:ok, content}
