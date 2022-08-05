@@ -11,6 +11,7 @@ defmodule ResuMate.FactoryTemplate do
       def last_name(), do: Faker.Person.last_name()
       def word(), do: Faker.Lorem.word()
       def paragraph(), do: Faker.Lorem.paragraph()
+      def sentence(), do: Faker.Lorem.sentence()
     end
   end
 end

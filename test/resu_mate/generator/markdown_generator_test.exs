@@ -51,6 +51,36 @@ defmodule ResuMate.Generator.MarkdownGeneratorTest do
         "strengths" => [
           "Evading complex problems through wit & bravery",
           "Aptitude of hiking",
+        ],
+        "skills" => %{
+          "proficiencies" => ["Elixir"],
+          "familiarities" => ["Quantum Mechanics", "Cursed Jewelry"],
+          "operating_systems" => ["Linux", "Mac OS X"],
+        },
+        "work_experience" => [
+          %{
+            "title" => "Ring Bearer",
+            "company" => %{
+              "name" => "The Fellowship LLC",
+              "location" => %{
+                "city" => "Rivendell",
+                "state" => "Middle Earth"
+              }
+            },
+            "start" => %{
+              "year" => 2022,
+              "month" => 8
+            },
+            "end" => %{
+              "year" => 2021,
+              "month" => 4
+            },
+            "duties_and_accomplishments" => [
+              Factory.sentence(), 
+              Factory.sentence(), 
+              Factory.sentence(), 
+            ]
+          }
         ]
       }
 
