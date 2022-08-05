@@ -34,11 +34,7 @@ defmodule ResuMate.Generator.MarkdownGenerator do
   end
 
   def content_for(resume_data) do
-    sections = [
-      build_section(:name, nil, resume_data),
-      build_section(:contact_info, "### Contact Info", resume_data)
-    ]
-
+    sections = build_sections(resume_data)
     sections_with_errors = Enum.filter(sections, fn {k, _v} -> k == :error end)
 
     if Enum.any?(sections_with_errors) do
@@ -51,6 +47,13 @@ defmodule ResuMate.Generator.MarkdownGenerator do
       |> Enum.map(&MarkdownSection.to_text/1)
       |> Enum.join("\n")
     end
+  end
+
+  defp build_sections(resume_data) do
+    [
+      build_section(:name, nil, resume_data),
+      build_section(:contact_info, "### Contact Info", resume_data)
+    ]
   end
 
   def section_content(:name, %{"name" => name_data}) do
