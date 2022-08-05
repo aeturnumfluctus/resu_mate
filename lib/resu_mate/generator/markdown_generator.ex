@@ -79,10 +79,10 @@ defmodule ResuMate.Generator.MarkdownGenerator do
     } = contact_info_data
 
     content = """
-    #{phone}
-    #{city}, #{state}
-    [#{email}]("mailto:#{email}")
-    [#{site_text}](#{site_url})
+    \n#{phone}
+    \n#{city}, #{state}
+    \n[#{email}]("mailto:#{email}")
+    \n[#{site_text}](#{site_url})
     """
 
     {:ok, content}
@@ -133,8 +133,8 @@ defmodule ResuMate.Generator.MarkdownGenerator do
     } = online_presence_data
 
     content = """
-    [Github](#{github_url})
-    [LinkedIn](#{linkedin_url})
+    \n[Github](#{github_url})
+    \n[LinkedIn](#{linkedin_url})
     """
 
     {:ok, content}
