@@ -58,7 +58,7 @@ defmodule ResuMate.Generator.MarkdownGenerator do
       build_section(:education, "## Education", resume_data),
       build_section(:strengths, "## Strengths", resume_data),
       build_section(:skills, "## Skills", resume_data),
-      build_section(:work_experience, "## Work Experience", resume_data),
+      build_section(:work_experience, "## Work Experience", resume_data)
     ]
   end
 
@@ -90,18 +90,18 @@ defmodule ResuMate.Generator.MarkdownGenerator do
 
   def section_content(:education, %{"education" => education_data}) do
     # too naive..
-    sort_by_fn = fn %{"start" => start_year, "end" => end_year} -> 
+    sort_by_fn = fn %{"start" => start_year, "end" => end_year} ->
       {
-        Date.new(end_year, 1, 1), 
+        Date.new(end_year, 1, 1),
         Date.new(start_year, 1, 1)
-      } 
+      }
     end
 
-    content = 
+    content =
       education_data
       |> Enum.sort_by(&sort_by_fn.(&1), :desc)
-      |> Enum.map(fn education_entry -> 
-        section_content(:education_entry, education_entry) 
+      |> Enum.map(fn education_entry ->
+        section_content(:education_entry, education_entry)
       end)
       |> Enum.join("\n")
 
@@ -110,8 +110,8 @@ defmodule ResuMate.Generator.MarkdownGenerator do
 
   def section_content(:education_entry, education_entry) do
     %{
-      "degree" => degree, 
-      "focus" => %{"major" => major, "minor" => minor}, 
+      "degree" => degree,
+      "focus" => %{"major" => major, "minor" => minor},
       "location" => %{"city" => city, "state" => state},
       "school" => school,
       "start" => start_year,
@@ -140,23 +140,23 @@ defmodule ResuMate.Generator.MarkdownGenerator do
     {:ok, content}
   end
 
-  def section_content(:profile, %{"profile" => %{"blurb" => blurb}}) do 
+  def section_content(:profile, %{"profile" => %{"blurb" => blurb}}) do
     {:ok, blurb}
   end
 
   # TODO: this could be better.. ^_^
   def section_content(:skills, %{"skills" => skills_data}) do
     %{
-      "familiarities" => familiarities, 
-      "operating_systems" => operating_systems, 
-      "proficiencies" => proficiencies,
+      "familiarities" => familiarities,
+      "operating_systems" => operating_systems,
+      "proficiencies" => proficiencies
     } = skills_data
 
     content = """
     ### Languages & Frameworks
     - #{Enum.join(proficiencies, "\n- ")}
     - #{Enum.join(familiarities, "\n- ")}
-    
+
     ### Operating Systems
     - #{Enum.join(operating_systems, "\n- ")}
     """
@@ -176,18 +176,18 @@ defmodule ResuMate.Generator.MarkdownGenerator do
   # TODO: this could be better.. ^_^
   def section_content(:work_experience, %{"work_experience" => work_experience_data}) do
     # reverse chronological order sort
-    sort_by_fn = fn %{"start" => start_date, "end" => end_date} -> 
+    sort_by_fn = fn %{"start" => start_date, "end" => end_date} ->
       {
-        Date.new(end_date["year"], end_date["month"], 1), 
+        Date.new(end_date["year"], end_date["month"], 1),
         Date.new(start_date["year"], start_date["month"], 1)
-      } 
+      }
     end
 
     content =
       work_experience_data
       |> Enum.sort_by(&sort_by_fn.(&1), :desc)
-      |> Enum.map(fn work_experience_entry -> 
-        section_content(:work_experience_entry, work_experience_entry) 
+      |> Enum.map(fn work_experience_entry ->
+        section_content(:work_experience_entry, work_experience_entry)
       end)
       |> Enum.join("\n")
 
@@ -196,19 +196,19 @@ defmodule ResuMate.Generator.MarkdownGenerator do
 
   def section_content(:work_experience_entry, work_experience_entry) do
     %{
-      "company" => %{"name" => company_name, "location" => company_loc}, 
+      "company" => %{"name" => company_name, "location" => company_loc},
       "duties_and_accomplishments" => duties_and_accomplishments,
-      "start" => %{"year" => start_year, "month" => start_month}, 
-      "end" => %{"year" => end_year, "month" => end_month}, 
-      "title" => title, 
+      "start" => %{"year" => start_year, "month" => start_month},
+      "end" => %{"year" => end_year, "month" => end_month},
+      "title" => title
     } = work_experience_entry
 
     # use first day of month, since day doesn't matter..
     {:ok, start_date} = Date.new(start_year, start_month, 1)
     {:ok, end_date} = Date.new(end_year, end_month, 1)
 
-    start_date_str = to_month_and_year(start_date) 
-    end_date_str = to_month_and_year(end_date) 
+    start_date_str = to_month_and_year(start_date)
+    end_date_str = to_month_and_year(end_date)
 
     date_span = "#{start_date_str} - #{end_date_str}"
 

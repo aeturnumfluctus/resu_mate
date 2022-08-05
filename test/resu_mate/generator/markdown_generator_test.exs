@@ -45,17 +45,17 @@ defmodule ResuMate.Generator.MarkdownGeneratorTest do
             },
             "school" => "Mount Doom Institute of Technology",
             "start" => 2008,
-            "end" => 2012,
+            "end" => 2012
           }
         ],
         "strengths" => [
           "Evading complex problems through wit & bravery",
-          "Aptitude of hiking",
+          "Aptitude of hiking"
         ],
         "skills" => %{
           "proficiencies" => ["Elixir"],
           "familiarities" => ["Quantum Mechanics", "Cursed Jewelry"],
-          "operating_systems" => ["Linux", "Mac OS X"],
+          "operating_systems" => ["Linux", "Mac OS X"]
         },
         "work_experience" => [
           %{
@@ -76,9 +76,9 @@ defmodule ResuMate.Generator.MarkdownGeneratorTest do
               "month" => 8
             },
             "duties_and_accomplishments" => [
-              Factory.sentence(), 
-              Factory.sentence(), 
-              Factory.sentence(), 
+              Factory.sentence(),
+              Factory.sentence(),
+              Factory.sentence()
             ]
           }
         ]
