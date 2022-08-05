@@ -5,7 +5,13 @@ defmodule ResuMate do
 
   ## Examples
 
-  **TODO**
+  To generate a markdown-formatted resume named `/path/to/resume.md` from existing 
+  data in `/path/to/resume_data.yml`:
+
+      ResuMate.generate_resume(
+        from: "/path/to/resume_data.yml", 
+        as: "/path/to/resume.md"
+      )
   """
 
   alias ResuMate.{Generator, GeneratorError, Parser, ParserError}
