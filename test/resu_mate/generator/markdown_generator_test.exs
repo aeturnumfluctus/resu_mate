@@ -68,12 +68,12 @@ defmodule ResuMate.Generator.MarkdownGeneratorTest do
               }
             },
             "start" => %{
-              "year" => 2022,
-              "month" => 8
-            },
-            "end" => %{
               "year" => 2021,
               "month" => 4
+            },
+            "end" => %{
+              "year" => 2022,
+              "month" => 8
             },
             "duties_and_accomplishments" => [
               Factory.sentence(), 
