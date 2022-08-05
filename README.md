@@ -28,6 +28,11 @@ To generate a markdown-formatted resume named `resume.md` from existing data in
 iex> ResuMate.generate_resume(as: "resume.md", from: "resume.yml")
 ```
 
+Currently, resume source files must adhere to a fairly specific structure in
+order for the generator to function properly. An example of this structure can 
+be found in an [examples file](examples/frodo_resume_data.yml) included in this
+repository.
+
 ## License
 
 Copyright 2022 Joshua Adams
