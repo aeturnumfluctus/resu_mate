@@ -19,12 +19,6 @@ defmodule ResuMate.Generator.MarkdownGenerator do
     end
   end
 
-  defp build_section(section_name, section_heading, {:ok, section_contents}) do
-    {:ok, MarkdownSection.new(section_name, section_heading, section_contents)}
-  end
-
-  defp build_section(_section_name, _section_heading, error_tup), do: error_tup
-
   @impl true
   def generate(resume_data) do
     case content_for(resume_data) do
@@ -35,8 +29,10 @@ defmodule ResuMate.Generator.MarkdownGenerator do
 
   def content_for(resume_data) do
     sections = [
-      build_section(:name, nil, section_content(:name, resume_data)),
-      build_section(:contact_info, "### Contact Info", section_content(:contact_info, resume_data)),
+      build_section(:name, nil, resume_data),
+      build_section(:contact_info, "### Contact Info", resume_data),
+      # build_section(:name, nil, section_content(:name, resume_data)),
+      # build_section(:contact_info, "### Contact Info", section_content(:contact_info, resume_data)),
       # ...
     ]
 
@@ -92,6 +88,16 @@ defmodule ResuMate.Generator.MarkdownGenerator do
   def section_content(section, data) do 
     {:error, section_error_for(section, data)}
   end
+
+  defp build_section(section_name, section_heading, resume_data) do
+    case section_content(section_name, resume_data) do
+      {:ok, contents} -> 
+        {:ok, MarkdownSection.new(section_name, section_heading, contents)}
+      err_tup -> 
+        err_tup
+    end
+  end
+
 
   defp to_month_and_year(date) do
     Calendar.strftime(date, "%b, %Y")
