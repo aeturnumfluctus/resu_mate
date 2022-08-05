@@ -17,6 +17,14 @@ defmodule ResuMate.Generator.MarkdownGenerator do
     def new(name, heading, contents) do
       %__MODULE__{name: name, heading: heading, contents: contents}
     end
+
+    def to_text(%__MODULE__{heading: heading, contents: contents}) do
+      if heading do
+        "#{heading}\n#{contents}"
+      else
+        contents
+      end
+    end
   end
 
   @impl true
@@ -33,7 +41,7 @@ defmodule ResuMate.Generator.MarkdownGenerator do
       build_section(:contact_info, "### Contact Info", resume_data),
     ]
 
-    sections_with_errors = Enum.filter(sections, fn {k, v} -> k == :error end)
+    sections_with_errors = Enum.filter(sections, fn {k, _v} -> k == :error end)
 
     if Enum.any?(sections_with_errors) do
       sections_with_errors
@@ -41,16 +49,10 @@ defmodule ResuMate.Generator.MarkdownGenerator do
       |> aggregate_errors()
     else
       sections
-      |> Enum.reduce("", fn {:ok, markdown_section}, acc ->
-        content = 
-          if markdown_section.heading do
-            "\n#{markdown_section.heading}\n#{markdown_section.contents}"
-          else
-            markdown_section.contents
-          end
+      |> Enum.map(fn {:ok, markdown_section} -> markdown_section end)
+      |> Enum.map(&MarkdownSection.to_text/1)
+      |> Enum.join("\n")
 
-        acc <> content
-      end)
     end
   end
 
