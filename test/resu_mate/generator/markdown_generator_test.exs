@@ -28,6 +28,9 @@ defmodule ResuMate.Generator.MarkdownGeneratorTest do
         "online_presence" => %{
           "linkedin" => "https://www.linkedin.com/in/frododododododododo",
           "github" => "https://github.com/frododododododododo"
+        },
+        "profile" => %{
+          "blurb" => Factory.paragraph()
         }
       }
 

@@ -52,8 +52,9 @@ defmodule ResuMate.Generator.MarkdownGenerator do
   defp build_sections(resume_data) do
     [
       build_section(:name, nil, resume_data),
-      build_section(:contact_info, "### Contact Info", resume_data),
-      build_section(:online_presence, nil, resume_data)
+      build_section(:contact_info, "## Contact Info", resume_data),
+      build_section(:online_presence, nil, resume_data),
+      build_section(:profile, "## Profile", resume_data)
     ]
   end
 
@@ -95,6 +96,10 @@ defmodule ResuMate.Generator.MarkdownGenerator do
     """
 
     {:ok, content}
+  end
+
+  def section_content(:profile, %{"profile" => %{"blurb" => blurb}}) do 
+    {:ok, blurb}
   end
 
   # default to dummy string for unhandled section args ^_^
