@@ -31,9 +31,6 @@ defmodule ResuMate.Generator.MarkdownGenerator do
     sections = [
       build_section(:name, nil, resume_data),
       build_section(:contact_info, "### Contact Info", resume_data),
-      # build_section(:name, nil, section_content(:name, resume_data)),
-      # build_section(:contact_info, "### Contact Info", section_content(:contact_info, resume_data)),
-      # ...
     ]
 
     sections_with_errors = Enum.filter(sections, fn {k, v} -> k == :error end)
@@ -97,7 +94,6 @@ defmodule ResuMate.Generator.MarkdownGenerator do
         err_tup
     end
   end
-
 
   defp to_month_and_year(date) do
     Calendar.strftime(date, "%b, %Y")
