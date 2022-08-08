@@ -5,7 +5,13 @@ A little tool to generate a resume from structured data.
 ## Usage
 
 To generate a markdown-formatted resume named `resume.md` from existing data in 
-`resume.yml`, open up an `iex` shell and run:
+`resume.yml`, run the following `mix` task:
+
+```elixir
+$ mix resu_mate.gen.resume resume.md --source resume.yml 
+```
+
+Alternatively, you can open up an `iex` shell and run:
 
 ```elixir
 iex> ResuMate.generate_resume(as: "resume.md", from: "resume.yml")
@@ -26,7 +32,7 @@ be loosened a bit.
 
 ## Roadmap
 
-- [ ] Add a `Mix` task for generating resumes (thus bypassing the need to spin up an `iex`)
+- [x] Add a `Mix` task for generating resumes (thus bypassing the need to spin up an `iex`)
 - [ ] Update Resume generation logic such that it's easier to generate resume's with varied underlying source data structures.
 - [ ] Add more generator possibilities (e.g. html, pdf, ...) 
 
