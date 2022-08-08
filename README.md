@@ -2,36 +2,39 @@
 
 A little tool to generate a resume from structured data.
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `resu_mate` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:resu_mate, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/resu_mate>.
-
 ## Usage
 
 To generate a markdown-formatted resume named `resume.md` from existing data in 
-`resume.yml`, open up an `iex` shell and run:
+`resume.yml`, run the following `mix` task:
+
+```elixir
+$ mix resu_mate.gen.resume resume.md --source resume.yml 
+```
+
+Alternatively, you can open up an `iex` shell and run:
 
 ```elixir
 iex> ResuMate.generate_resume(as: "resume.md", from: "resume.yml")
 ```
 
+## Extensibility
+
+`ResuMate` is designed to be malleable enough to, albeit with a little of 
+tinkering, suit your individual needs / preferences. 
+
 Currently, resume source files must adhere to a fairly specific structure in
 order for the generator to function properly. An example of this structure can 
-be found in an [examples file](examples/frodo_resume_data.yml) included in this
-repository.
+be found in an [example file](examples/frodo_resume_data.yml) included in this
+repository. 
+
+At some future point, the goal is for these existing structural constraints to 
+be loosened a bit.
+
+## Roadmap
+
+- [x] Add a `Mix` task for generating resumes (thus bypassing the need to spin up an `iex`)
+- [ ] Update Resume generation logic such that it's easier to generate resume's with varied underlying source data structures.
+- [ ] Add more generator possibilities (e.g. html, pdf, ...) 
 
 ## License
 
