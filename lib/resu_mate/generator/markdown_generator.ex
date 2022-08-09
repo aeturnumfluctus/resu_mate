@@ -213,7 +213,7 @@ defmodule ResuMate.Generator.MarkdownGenerator do
     date_span = "#{start_date_str} - #{end_date_str}"
 
     """
-    #{title}, #{company_name}, #{company_loc["city"]}, #{company_loc["state"]}
+    ### #{title}, #{company_name}, #{company_loc["city"]}, #{company_loc["state"]}
     *#{date_span}*
     - #{Enum.join(duties_and_accomplishments, "\n- ")}
     """
